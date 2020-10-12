@@ -114,3 +114,12 @@ let name6: string | number;
 let Gender3: 'Boy' | 'Girl';
 Gender3 = 'Boy'; 
 
+
+// 命名空间 
+namespace a {
+  let name = 'xuyfh';
+}
+
+namespace b {
+  let name = 'xuyfh';
+}
