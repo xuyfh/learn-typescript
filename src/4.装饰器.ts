@@ -64,3 +64,86 @@ namespace b {
   console.log(p.name)
 }
 
+namespace c {
+  function propertyEnumerable(flag: boolean) {
+    return function (target: any, methodName: string) {
+
+    }
+  }
+  function methodEnumerable(flag: boolean) {
+    return function (target: any, methodName: string, propertyDescriptor: PropertyDescriptor) {
+      propertyDescriptor.enumerable = flag;
+    }
+  }
+  function toNumber(target: any, methodName: string, propertyDescriptor: PropertyDescriptor) {
+    let oldMethod = propertyDescriptor.value;
+    propertyDescriptor.value = function (...args: any[]) {
+      args = args.map(item => parseFloat(item));
+      return oldMethod.apply(this, args);
+    }
+  }
+  class Person {
+    @propertyEnumerable(false)
+    name: string = 'xuyfh'
+    @methodEnumerable(true)
+    getName() {
+      console.log('getName');
+    }
+    @toNumber
+    sum(...args: any[]) {
+      console.log(1);
+      return args.reduce((prev, curr) => prev + curr, 0);
+    }
+  }
+
+  let p = new Person();
+  console.log(p.sum(1, '2', 3));
+}
+
+namespace d {
+  // 参数装饰器（很少有人用） 方法参数
+}
+
+
+// 装饰器的执行顺序
+
+// 属性方法先执行，谁先写先执行谁
+// 方法的时候，先参数再方法
+// 最后是类
+// 如果是同类型的，先执行后写的
+
+namespace e {
+  function Class1Decorator() {
+    return function(target: any) {
+      console.log('类1装饰器');
+    }
+  }
+
+  function Class2Decorator() {
+    return function(target: any) {
+      console.log('类2装饰器');
+    }
+  } 
+
+  function PropertyDecorator(name: string) {
+    return function (target: any, methodName: string) {
+      console.log('属性装饰器' + name);
+    }
+  }
+
+  function MethodDecorator(method: string) {
+    return function (target: any, methodName: string, propertyDescriptor: PropertyDescriptor) {
+      console.log('方法装饰器');
+    }
+  }
+  @Class1Decorator()
+  @Class2Decorator()
+  class Person {
+    @PropertyDecorator('name')
+    name: string = 'xuyfh';
+    @PropertyDecorator('age')
+    age: number = 10;
+    @MethodDecorator('method')
+    greet() {}
+  }
+}
