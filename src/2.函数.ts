@@ -1,5 +1,3 @@
-import { type } from "os";
-
 // 函数定义
 function hello(name: string): void {
   console.log('hello ', name);
@@ -9,6 +7,7 @@ function hello(name: string): void {
 type GetUserNameType = (firstName: string, lastName: string) => {
   name: string
 }
+
 // 函数表达式
 let getUserName: GetUserNameType = function (firstName: string, lastName: string): {
   name: string
@@ -64,4 +63,4 @@ sum2(1, 'd');
 sum2('d', 1);
 
 // ts 如何写箭头函数
-const a: any = (name: string, age: number) => {}
+// const a: any = (name: string, age: number) => {}

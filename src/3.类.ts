@@ -1,5 +1,3 @@
-import { stdout } from "process";
-
 // 类的定义
 class Person {
   name: string = 'xuyfh';
