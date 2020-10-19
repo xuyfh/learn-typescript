@@ -44,6 +44,9 @@ namespace b {
 
 // 属性装饰器
 namespace b {
+  function up(target: any) {
+    target.prototype.strength = 10;
+  }
   // target 如果装饰的是某个属性的话，那么这个target指向类的原型 Person.prototye
   // target 如果装饰的是一个类的属性 static，那么这个 target 指向类的定义
   function upperCase (target: any, propertyName: string) {
@@ -55,12 +58,14 @@ namespace b {
       configurable: true,
     });
   }
+  @up
   class Person {
-    @upperCase
+    // @upperCase
     name: string = '123'
   }
   let p = new Person();
   p.name = 'xuyfh';
+  // console.log(p.strength) // 这里跟 es6 的装饰器的表现形态有出入
   console.log(p.name)
 }
 
