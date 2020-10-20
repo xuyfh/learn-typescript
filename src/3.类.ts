@@ -100,7 +100,7 @@ namespace b {
 
 
 // 静态属性 静态方法
-namespace c {
+namespace f {
   class Person {
     static type = 'Student'
     public name: string;
