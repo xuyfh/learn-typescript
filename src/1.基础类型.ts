@@ -5,6 +5,7 @@ let age: number = 10;
 let married: boolean = false;
 let hobbies: string[] = ['学习'];
 let interests: Array<string> = ['学习'];
+let interests2: string[] = ['学习'];
 
 // 元祖 类似一个数组 它是一个长度和类型都固定的数组
 // 1.长度固定 2.类型可以不一样

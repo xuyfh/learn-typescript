@@ -59,7 +59,7 @@ namespace e {
   interface Calculate {
     <T>(a: T, b: T): T
   }
-  let add: Calculate = function <T>(a: T, b: T): T {
+  let add: Calculate = function (a, b) {
     return a;
   }
   let result = add<number>(5, 5);
