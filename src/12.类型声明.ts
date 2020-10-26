@@ -36,3 +36,31 @@ let seasons: Seasons[] = [
   Seasons.Winter
 ]
 console.log(seasons)
+
+
+// namespace 第一个作用是封装类似的代码 第二个作用防止命名冲突
+namespace zoo {
+  class Dog {
+
+  }
+}
+namespace home {
+  export class Dog {
+
+  }
+}
+let dog = new home.Dog();
+
+
+// 如果定义一个复杂对象
+// jQuery
+declare namespace jQuery {
+  function ajax(url: string, config: any): void
+  let name: string
+  namespace fn {
+    function extend(object: any): void
+  }
+}
+jQuery.ajax('/api/users', {});
+jQuery.name;
+jQuery.fn.extend({});
